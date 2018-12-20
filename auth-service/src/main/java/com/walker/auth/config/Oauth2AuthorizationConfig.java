@@ -8,6 +8,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
  * @author walker
@@ -20,6 +22,14 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    private TokenStore tokenStore = new InMemoryTokenStore();
+
+    /**
+     * 配置客户端信息
+     *
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -33,12 +43,24 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .scopes("server");
     }
 
+    /**
+     * 配置授权 Token 的节点和 Token 服务
+     *
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .tokenStore(tokenStore);
     }
 
+    /**
+     * 配置 Token 节点的安全策略
+     * @param security
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()")
