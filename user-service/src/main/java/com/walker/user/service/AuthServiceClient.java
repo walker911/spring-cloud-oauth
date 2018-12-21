@@ -14,7 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "uaa-service", fallback = AuthServiceHystrix.class)
 public interface AuthServiceClient {
 
+    /**
+     * 获取 token
+     *
+     * @param authorization
+     * @param type
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping(value = "/oauth/token")
     Jwt getToken(@RequestHeader("Authorization") String authorization, @RequestParam("grant_type") String type,
-                 String username, String password);
+                 @RequestParam("username") String username, @RequestParam("password") String password);
 }
