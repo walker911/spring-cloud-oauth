@@ -1,4 +1,4 @@
-package com.walker.auth.model;
+package com.walker.hi.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
  * @date 2018/12/20
  */
 @Entity
-public class Role {
+public class Role{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
