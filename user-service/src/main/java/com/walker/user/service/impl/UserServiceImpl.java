@@ -3,13 +3,17 @@ package com.walker.user.service.impl;
 import com.walker.user.dto.UserLoginDTO;
 import com.walker.user.exception.UserLoginException;
 import com.walker.user.model.Jwt;
+import com.walker.user.model.Role;
 import com.walker.user.model.User;
+import com.walker.user.repository.RoleRepository;
 import com.walker.user.repository.UserRepository;
 import com.walker.user.service.AuthServiceClient;
 import com.walker.user.service.UserService;
 import com.walker.user.util.BPwdEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author walker
@@ -20,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     @Autowired
     private AuthServiceClient authServiceClient;
 
@@ -41,7 +47,10 @@ public class UserServiceImpl implements UserService {
             throw new UserLoginException("error password");
         }
 
-        Jwt jwt = authServiceClient.getToken("", "password", username, password);
+        List<Role> roles = roleRepository.findRolesByUserId(user.getId());
+        user.setRoles(roles);
+
+        Jwt jwt = authServiceClient.getToken("Basic dXNlci1zZXJ2aWNlOjEyMzQ1Ng==", "password", username, password);
         if (jwt == null) {
             throw new UserLoginException("error internal");
         }

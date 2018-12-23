@@ -23,7 +23,7 @@ public interface AuthServiceClient {
      * @param password
      * @return
      */
-    @PostMapping(value = "/oauth/token")
+    @PostMapping(value = "/uaa/oauth/token")
     Jwt getToken(@RequestHeader("Authorization") String authorization, @RequestParam("grant_type") String type,
                  @RequestParam("username") String username, @RequestParam("password") String password);
 }

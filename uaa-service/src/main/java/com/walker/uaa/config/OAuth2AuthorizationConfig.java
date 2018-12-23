@@ -36,7 +36,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("user-service")
-                .secret("123456")
+                .secret("{noop}123456")
                 .authorizedGrantTypes("refresh_token", "password")
                 .scopes("service")
                 .accessTokenValiditySeconds(3600);

@@ -33,10 +33,6 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("browser")
-                .authorizedGrantTypes("refresh_token", "password")
-                .scopes("ui")
-                .and()
                 .withClient("service-hi")
                 .secret("{noop}123456")
                 .authorizedGrantTypes("client_credentials", "refresh_token", "password")
