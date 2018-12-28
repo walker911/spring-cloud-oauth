@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthServiceHystrix implements AuthServiceClient {
     @Override
-    public Jwt getToken(String authorization, String type, String username, String password) {
+    public Jwt getToken(String type, String username, String password) {
         return null;
     }
 }

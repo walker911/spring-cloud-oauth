@@ -4,7 +4,6 @@ import com.walker.user.model.Jwt;
 import com.walker.user.service.impl.AuthServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -17,13 +16,12 @@ public interface AuthServiceClient {
     /**
      * 获取 token
      *
-     * @param authorization
      * @param type
      * @param username
      * @param password
      * @return
      */
     @PostMapping(value = "/uaa/oauth/token")
-    Jwt getToken(@RequestHeader("Authorization") String authorization, @RequestParam("grant_type") String type,
-                 @RequestParam("username") String username, @RequestParam("password") String password);
+    Jwt getToken(@RequestParam("grant_type") String type, @RequestParam("username") String username,
+                 @RequestParam("password") String password);
 }

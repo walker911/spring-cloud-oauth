@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         List<Role> roles = roleRepository.findRolesByUserId(user.getId());
         user.setRoles(roles);
 
-        Jwt jwt = authServiceClient.getToken("Basic dXNlci1zZXJ2aWNlOjEyMzQ1Ng==", "password", username, password);
+        Jwt jwt = authServiceClient.getToken("password", username, password);
         if (jwt == null) {
             throw new UserLoginException("error internal");
         }
