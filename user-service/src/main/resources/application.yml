@@ -18,3 +18,11 @@ spring:
 feign:
   hystrix:
     enabled: true
+# feign 首次请求失败
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
