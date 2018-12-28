@@ -26,7 +26,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
-          strategy: SEMAPHORE
 logging:
   level:
     com.walker.user.service: debug
