@@ -31,7 +31,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(String username, String password) {
-        User user = new User();
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            throw new UserLoginException("repeat username");
+        }
+        user = new User();
         user.setUsername(username);
         user.setPassword(BPwdEncoderUtil.encode(password));
         return userRepository.save(user);

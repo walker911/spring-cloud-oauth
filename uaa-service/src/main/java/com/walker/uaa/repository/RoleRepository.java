@@ -12,6 +12,12 @@ import java.util.List;
  */
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
+    /**
+     *  find roles by user id
+     *
+     * @param userId
+     * @return
+     */
     @Query(value = "select a.id, a.name from role a inner join user_role b " +
             "on a.id = b.role_id where b.user_id = :userId", nativeQuery = true)
     List<Role> findRolesByUserId(Long userId);

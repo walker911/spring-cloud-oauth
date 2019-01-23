@@ -18,4 +18,9 @@ public class WebController {
     public String getFoo() {
         return "I'm foo, " + UUID.randomUUID().toString();
     }
+
+    @GetMapping("/hello")
+    public String hello(String username) {
+        return "Hello, " + username;
+    }
 }

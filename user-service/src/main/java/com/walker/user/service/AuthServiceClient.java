@@ -1,5 +1,6 @@
 package com.walker.user.service;
 
+import com.walker.user.config.FeignLogConfig;
 import com.walker.user.model.Jwt;
 import com.walker.user.service.impl.AuthServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author walker
  * @date 2018/12/21
  */
-@FeignClient(value = "uaa-service", fallback = AuthServiceHystrix.class)
+@FeignClient(value = "uaa-service", fallback = AuthServiceHystrix.class, configuration = FeignLogConfig.class)
 public interface AuthServiceClient {
 
     /**
