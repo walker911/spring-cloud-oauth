@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80013
 File Encoding         : 65001
 
-Date: 2019-01-23 17:41:32
+Date: 2019-01-24 10:49:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `oauth_client_details` (
   `authorities` varchar(256) DEFAULT NULL,
   `access_token_validity` int(11) DEFAULT NULL,
   `refresh_token_validity` int(11) DEFAULT NULL,
-  `addtional_information` varchar(4096) DEFAULT NULL,
+  `additional_information` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `autoapprove` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
