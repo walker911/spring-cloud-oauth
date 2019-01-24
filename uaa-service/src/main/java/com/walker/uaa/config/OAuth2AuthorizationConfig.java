@@ -32,7 +32,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     private DataSource dataSource;
 
     /**
-     * 配置客户端信息
+     * 配置客户端信息：存储到数据库
      *
      * @param clients
      * @throws Exception
