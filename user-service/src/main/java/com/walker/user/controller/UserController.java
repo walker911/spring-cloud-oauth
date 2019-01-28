@@ -3,8 +3,10 @@ package com.walker.user.controller;
 import com.walker.user.dto.UserLoginDTO;
 import com.walker.user.model.User;
 import com.walker.user.service.UserService;
+import com.walker.user.vo.UserLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public UserLoginDTO login(String username, String password) {
-        return userService.login(username, password);
+    public UserLoginDTO login(@RequestBody UserLoginVO loginVO) {
+        return userService.login(loginVO.getUsername(), loginVO.getPassword());
     }
 }

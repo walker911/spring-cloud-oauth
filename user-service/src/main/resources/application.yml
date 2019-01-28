@@ -15,6 +15,10 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
     show-sql: true
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 feign:
   hystrix:
     enabled: true
@@ -25,7 +29,12 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 10000
+# read timeout
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
 logging:
   level:
     com.walker.user.service: debug
