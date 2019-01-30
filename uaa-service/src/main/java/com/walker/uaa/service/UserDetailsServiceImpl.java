@@ -1,5 +1,6 @@
 package com.walker.uaa.service;
 
+import com.walker.uaa.feign.UserService;
 import com.walker.uaa.model.Role;
 import com.walker.uaa.model.User;
 import com.walker.uaa.repository.RoleRepository;
@@ -17,12 +18,19 @@ import java.util.List;
  * @date 2018/12/20
  */
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    private final UserService userService;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
