@@ -10,17 +10,17 @@ import com.walker.user.model.User;
 public interface UserService {
     /**
      * 保存
-     * @param username
-     * @param password
-     * @return
+     * @param username 用户名
+     * @param password 密码
+     * @return User
      */
     User save(String username, String password);
 
     /**
      * 登录
-     * @param username
-     * @param password
-     * @return
+     * @param username 用户名
+     * @param password 密码
+     * @return UserLoginDTO
      */
     UserLoginDTO login(String username, String password);
 }

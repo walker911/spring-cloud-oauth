@@ -1,6 +1,5 @@
 package com.walker.uaa.service;
 
-import com.walker.uaa.feign.UserService;
 import com.walker.uaa.model.Role;
 import com.walker.uaa.model.User;
 import com.walker.uaa.repository.RoleRepository;
@@ -20,16 +19,13 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-
-    private final UserService userService;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserService userService) {
-        this.userService = userService;
+    public UserDetailsServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override

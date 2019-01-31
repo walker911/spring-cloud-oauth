@@ -17,10 +17,10 @@ public interface AuthServiceClient {
     /**
      * 获取 token
      *
-     * @param type
-     * @param username
-     * @param password
-     * @return
+     * @param type grant_type
+     * @param username 用户名
+     * @param password 密码
+     * @return Jwt
      */
     @PostMapping(value = "/uaa/oauth/token")
     Jwt getToken(@RequestParam("grant_type") String type, @RequestParam("username") String username,
